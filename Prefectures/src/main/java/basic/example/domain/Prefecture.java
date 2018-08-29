@@ -35,7 +35,7 @@ public class Prefecture {
 	@Column
 	private Integer prefecture_area_code;
 
-	@ManyToOne(fetch=FetchType.LAZY)				// 多対一の関係を宣言
-	@JoinColumn(nullable=true, name="area_code")	// 外部キーのカラム名を指定する
-	private Area area;
+//	@ManyToOne(fetch=FetchType.LAZY)				// 多対一の関係を宣言
+//	@JoinColumn(nullable=true, name="area_code")	// 外部キーのカラム名を指定する
+//	private Area area;
 }

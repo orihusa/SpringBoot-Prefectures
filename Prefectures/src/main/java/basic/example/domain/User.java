@@ -11,11 +11,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 //import lombok.ToString;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name="users")
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Entity
+//@Table(name="users")
 //@ToString(exclude="prefectures")
 public class User {
 
