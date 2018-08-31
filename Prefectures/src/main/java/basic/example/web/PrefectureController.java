@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import basic.example.domain.Prefecture;
+import basic.example.service.LoginUserDetails;
 import basic.example.service.PrefectureService;
-
 
 @Controller							// 画面遷移用のコントローラ
 @RequestMapping("prefectures")		// URLの接頭辞
@@ -43,60 +43,58 @@ public class PrefectureController {
 				@Validated	// 送信されたフォームの情報の入力チェックを行う
 					PrefectureForm form,
 					BindingResult result,
-					Model model//,
-//				@AuthenticationPrincipal	// ログイン中のLoginUserDetailsオブジェクトが取得できる
-//					LoginUserDetails userDetails
+					Model model,
+				@AuthenticationPrincipal	// ログイン中のLoginUserDetailsオブジェクトが取得できる
+					LoginUserDetails userDetails
 				) {
 		if (result.hasErrors()) {	// 入力チェックの結果を確認し、エラーの場合は一覧画面表示に戻る
 			return list(model);
 		}
 		Prefecture prefecture = new Prefecture();
 		BeanUtils.copyProperties(form, prefecture);
-		prefectureService.create(prefecture);
-//		prefectureService.create(prefecture, userDetails.getUser());
+		prefectureService.create(prefecture, userDetails.getUser());
 		return "redirect:/prefectures";	// 正常終了時、一覧画面表示にリダイレクトする 
 	}
 
-/**
 	@GetMapping(path="edit", params="form")
 	String editForm(@RequestParam	// 特定のリクエストパラメータをマッピング
 					Integer id,		// リクエストパラメータのidをマッピング
 					PrefectureForm form) {
-		Prefecture Prefecture = PrefectureService.findOne(id);
-		BeanUtils.copyProperties(Prefecture, form);
-		return "Prefectures/edit";		// 顧客情報編集画面
+		Prefecture prefecture = prefectureService.findOne(id);
+		BeanUtils.copyProperties(prefecture, form);
+		return "prefectures/edit";		// 顧客情報編集画面
 	}
 	
 	@PostMapping(path="edit")
 	String edit(@RequestParam
 					Integer id,
-					@Validated PrefectureForm form,
+				@Validated
+					PrefectureForm form,
 					BindingResult result,
-					@AuthenticationPrincipal	// ログイン中のLoginUserDetailsオブジェクトが取得できる
+				@AuthenticationPrincipal	// ログイン中のLoginUserDetailsオブジェクトが取得できる
 					LoginUserDetails userDetails
 					) {
 		if (result.hasErrors()) {
 			return editForm(id, form);
 		}
 		
-		// 送信されたPrefectureFormをPrefectureにコピーする
-		Prefecture Prefecture = new Prefecture();
-		BeanUtils.copyProperties(form, Prefecture);
+		// 送信されたPrefectureFormをprefectureにコピーする
+		Prefecture prefecture = new Prefecture();
+		BeanUtils.copyProperties(form, prefecture);
 		// 更新処理を実施
-		Prefecture.setId(id);
-		PrefectureService.update(Prefecture, userDetails.getUser());
-		return "redirect:/Prefectures";	// 処理が完了したら一覧表示画面にリダイレクトする
+		prefecture.setId(id);
+		prefectureService.update(prefecture, userDetails.getUser());
+		return "redirect:/prefectures";	// 処理が完了したら一覧表示画面にリダイレクトする
 	}
 	
 	@PostMapping(path="edit", params="goToTop")
 	String goToTop() {
-		return "redirect:/Prefectures";
+		return "redirect:/prefectures";
 	}
 
 	@PostMapping(path="delete")
 	String delete(@RequestParam Integer id) {
-		PrefectureService.delete(id);
-		return "redirect:/Prefectures";	// 処理が完了したら一覧表示画面にリダイレクトする
+		prefectureService.delete(id);
+		return "redirect:/prefectures";	// 処理が完了したら一覧表示画面にリダイレクトする
 	}
- */
 }

@@ -16,7 +16,7 @@ public interface PrefectureRepository extends JpaRepository<Prefecture, Integer>
 	@Query("SELECT x FROM Prefecture x ORDER BY x.prefecture_code")
 	Page<Prefecture> findAllOrderByName(Pageable pageable);
 
-//	// 「N+1 SELECT問題」の対応
-//	@Query("SELECT DISTINCT x FROM Prefecture x JOIN FETCH x.user ORDER BY x.prefecture_name_ank")
-//	List<Prefecture> findAllWithUserOrderByName();
+	// 「N+1 SELECT問題」の対応
+	@Query("SELECT DISTINCT x FROM Prefecture x JOIN FETCH x.user ORDER BY x.prefecture_code")
+	List<Prefecture> findAllWithUserOrderByName();
 }

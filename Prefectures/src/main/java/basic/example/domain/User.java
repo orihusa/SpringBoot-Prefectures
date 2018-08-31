@@ -1,6 +1,6 @@
 package basic.example.domain;
 
-//import java.util.List;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-//import lombok.ToString;
+import lombok.ToString;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Entity
-//@Table(name="users")
-//@ToString(exclude="prefectures")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name="users")
+@ToString(exclude="prefectures")
 public class User {
 
 	@Id
@@ -26,7 +26,7 @@ public class User {
 	@JsonIgnore
 	private String encodedPassword;
 
-//	@JsonIgnore
-//	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="name")
-//	private List<Prefecture> prefecture;
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
+	private List<Prefecture> prefectures;
 }
