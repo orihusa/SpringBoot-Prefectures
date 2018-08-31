@@ -15,7 +15,7 @@
 				<label for="prefecture_code" class="col-sm-2 control-label">都道府県コード</label>
 				<div class="col-sm-10">
 					<input type="text" id="prefecture_code" name="prefecture_code"
-						th:field="*{prefecture_code}" class="prefecture_code" value="99"/>
+						th:field="*{prefecture_code}" class="prefecture_code" value="99" style="width:25em;">
 					<span th:if="${#fields.hasErrors('prefecture_code')}" th:errors="*{prefecture_code}"
 						class="help-block">error!</span>
 				</div>
@@ -24,7 +24,7 @@
 				<label for="prefecture_name" class="col-sm-2 control-label">都道府県名</label>
 				<div class="col-sm-10">
 					<input type="text" id="prefecture_name" name="prefecture_name"
-						th:field="*{prefecture_name}" class="form-control" value="福岡県"/>
+						th:field="*{prefecture_name}" class="form-control" value="福岡県" style="width:25em;">
 					<span th:if="${#fields.hasErrors('prefecture_name')}" th:errors="*{prefecture_name}"
 						class="help-block">error!</span>
 				</div>
@@ -33,7 +33,7 @@
 				<label for="prefecture_name_ank" class="col-sm-2 control-label">都道府県名（ローマ字）</label>
 				<div class="col-sm-10">
 					<input type="text" id="prefecture_name_ank" name="prefecture_name_ank"
-						th:field="*{prefecture_name_ank}" class="form-control" value="fukuoka"/>
+						th:field="*{prefecture_name_ank}" class="form-control" value="fukuoka" style="width:25em;">
 					<span th:if="${#fields.hasErrors('prefecture_name_ank')}" th:errors="*{prefecture_name_ank}"
 						class="help-block">error!</span>
 				</div>
@@ -42,7 +42,7 @@
 				<label for="area_code" class="col-sm-2 control-label">エリア</label>
 				<div class="col-sm-10">
 					<input type="text" id="prefecture_area_code" name="prefecture_area_code"
-						th:field="*{prefecture_area_code}" class="form-control" value="九州地方"/>
+						th:field="*{prefecture_area_code}" class="form-control" value="九州地方" style="width:25em;">
 					<span th:if="${#fields.hasErrors('prefecture_area_code')}" th:errors="*{prefecture_area_code}"
 						class="help-block">error!</span>
 				</div>
